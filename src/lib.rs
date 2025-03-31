@@ -1,9 +1,6 @@
 extern crate bimap;
-extern crate clap;
 #[cfg(feature = "derive")]
 extern crate derive;
-#[cfg(feature = "yaml")]
-extern crate yaml_rust;
 
 #[cfg(feature = "derive")]
 pub use derive::*;
