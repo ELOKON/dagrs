@@ -150,5 +150,5 @@ fn main() {
     let file = "tests/config/custom_file_task.txt";
     let mut dag =
         Dag::with_config_file_and_parser(file, Box::new(ConfigParser), HashMap::new()).unwrap();
-    assert!(dag.start().is_ok());
+    assert!(futures_lite::future::block_on(dag.start()).is_ok());
 }
