@@ -146,7 +146,6 @@ impl Parser for ConfigParser {
 }
 
 fn main() {
-    env_logger::init();
     let file = "tests/config/custom_file_task.txt";
     let mut dag =
         Dag::with_config_file_and_parser(file, Box::new(ConfigParser), HashMap::new()).unwrap();

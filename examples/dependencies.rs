@@ -43,7 +43,6 @@ impl Complex for Compute {
 }
 
 fn main() {
-    env_logger::init();
     let mut tasks = dependencies!(
             a -> b c d,
             b -> e g,

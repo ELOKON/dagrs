@@ -28,9 +28,6 @@ impl Complex for Compute {
 }
 
 fn main() {
-    // initialization log.
-    env_logger::init();
-
     // generate some tasks.
     let a = DefaultTask::with_action("Compute A", Compute(1));
 
