@@ -30,8 +30,6 @@ fn compute_dag(tasks: Vec<DefaultTask>) {
 }
 
 fn compute_dag_bench(bencher: &mut Criterion) {
-    env_logger::init();
-
     let mut tasks = (0..50usize)
         .map(|i_task| DefaultTask::with_closure(&i_task.to_string(), calc))
         .collect::<Vec<_>>();

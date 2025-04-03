@@ -39,7 +39,6 @@ use std::{
 /// ```rust
 /// use dagrs::{Dag, DefaultTask, Output,Input,EnvVar,Action};
 /// use std::sync::Arc;
-/// env_logger::init();
 /// let task=DefaultTask::with_closure("Simple Task",|_input,_env|{
 ///     Output::new(1)
 /// });
@@ -71,8 +70,8 @@ pub struct Dag {
 }
 
 impl Dag {
-    /// Create a dag. This function is not open to the public. There are three ways to create a new
-    /// dag, corresponding to three functions: `with_tasks`, `with_yaml`, `with_config_file_and_parser`.
+    /// Create a dag. This function is not open to the public. There are two ways to create a new
+    /// dag, corresponding to two functions: `with_tasks` and `with_config_file_and_parser`.
     fn new() -> Dag {
         Dag {
             tasks: HashMap::new(),
@@ -112,28 +111,6 @@ impl Dag {
         dag.tasks = tasks.into_iter().map(|task| (task.id(), task)).collect();
 
         dag
-    }
-
-    /// Given a yaml configuration file parsing task to generate a dag.
-    #[cfg(feature = "yaml")]
-    pub fn with_yaml(
-        file: &str,
-        specific_actions: HashMap<String, Action>,
-    ) -> Result<Dag, DagError> {
-        use crate::YamlParser;
-        let parser = Box::new(YamlParser);
-        Dag::read_tasks(file, parser, specific_actions)
-    }
-
-    /// Given a yaml configuration file parsing task to generate a dag.
-    #[cfg(feature = "yaml")]
-    pub fn with_yaml_str(
-        content: &str,
-        specific_actions: HashMap<String, Action>,
-    ) -> Result<Dag, DagError> {
-        use crate::YamlParser;
-        let parser = Box::new(YamlParser);
-        Dag::read_tasks_from_str(content, parser, specific_actions)
     }
 
     /// Generates a dag with the user given path to a custom parser and task config file.

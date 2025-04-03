@@ -15,7 +15,6 @@ members = ["derive", "."]
 [dependencies]
 async-lock = "3.4.0"
 futures-concurrency = { version = "7.6.3", default-features = false, features = ["alloc"] }
-yaml-rust = { version = "0.4.5", optional = true }
 bimap = "0.6.1"
 derive = { path = "derive", version = "0.3.0", optional = true }
 thiserror = "1.0.50"
@@ -30,7 +29,6 @@ futures-lite = "2.6.0"
 pprof = { version = "0.13.0" }
 
 [features]
-yaml = ["dep:yaml-rust"]
 derive = ["derive/derive"]
 bench-prost-codec = [
     "pprof/criterion",
@@ -40,14 +38,6 @@ bench-prost-codec = [
 ]
 
 [[example]]
-name = "custom_log"
-required-features = ["yaml"]
-
-[[example]]
-name = "engine"
-required-features = ["yaml"]
-
-[[example]]
 name = "derive_task"
 required-features = ["derive"]
 
@@ -55,17 +45,8 @@ required-features = ["derive"]
 name = "dependencies"
 required-features = ["derive"]
 
-[[example]]
-name = "yaml_dag"
-required-features = ["yaml"]
-
 [[test]]
 name = "dag_job_test"
-required-features = ["yaml"]
-
-[[test]]
-name = "yaml_parser_test"
-required-features = ["yaml"]
 
 [[bench]]
 name = "compute_dag_bench"
